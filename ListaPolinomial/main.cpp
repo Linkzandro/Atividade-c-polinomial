@@ -12,8 +12,6 @@ int main() {
 	lista.Inserir(2, 3);
 	lista2.Inserir(4, 3);
 	lista2.Inserir(-2, 4);
-	//lista.display();
-	//lista2.display();
 
 	//lista*=lista2;
 	ListaPolinomio lista3 = lista * lista2;
