@@ -9,13 +9,14 @@ int main() {
 	ListaPolinomio lista2;
 	lista.Inserir(2, 2);
 	lista.Inserir(2, 8);
-	lista.Inserir(2, 3);
+	lista.Inserir(2,3);
 	lista2.Inserir(4, 3);
 	lista2.Inserir(-2, 4);
 
 	//lista*=lista2;
-	ListaPolinomio lista3 = lista * lista2;
+	ListaPolinomio lista3 = lista - lista2;
 	//lista = lista * lista2;
+	lista3.sortList();
 	lista3.display();
 
 

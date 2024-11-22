@@ -30,11 +30,13 @@ int ListaPolinomio::returnGrau() {
 	return grau;
 }
 
-void ListaPolinomio::Inserir(NoPolinomio* monomio) {
-	monomio->setProximo(head);
-	head = monomio;
+/* void ListaPolinomio::Inserir(NoPolinomio monomio) {
+	
+	NoPolinomio no(monomio.getBase(), monomio.getPotencia());
+	no.setProximo(head);
+	head = &no;
 	tamanho += 1;
-}
+} */
 
 void ListaPolinomio::Inserir(int base, int expoente) {
 
@@ -42,6 +44,7 @@ void ListaPolinomio::Inserir(int base, int expoente) {
 	if (base == 0)
 		return;
 
+	/*
 	NoPolinomio* node = new NoPolinomio(base, expoente);
 
 	if (!head || node->getPotencia() > head->getPotencia()) {
@@ -57,14 +60,14 @@ void ListaPolinomio::Inserir(int base, int expoente) {
 
 		node->setProximo(current->getProximo());
 		current->setProximo(node);
-	}
+	} */
 
 
 
-	//NoPolinomio* monomio = new NoPolinomio(base, expoente);
-	//monomio->setProximo(head);
-	//head = monomio;
-	//tamanho += 1;
+	NoPolinomio* monomio = new NoPolinomio(base, expoente);
+	monomio->setProximo(head);
+	head = monomio;
+	tamanho += 1;
 }
 
 ListaPolinomio::ListaPolinomio() {
@@ -231,13 +234,41 @@ ListaPolinomio operator*(const ListaPolinomio& lista1, const  ListaPolinomio& li
 }
 
 
-ListaPolinomio& operator+(const ListaPolinomio& lista1, const ListaPolinomio& lista2) {
-	ListaPolinomio lista;
+ListaPolinomio operator+(const ListaPolinomio& lista1, const ListaPolinomio& lista2) {
+	
+	ListaPolinomio resultado;
+	NoPolinomio* no1 = lista1.getHead();
+	NoPolinomio* no2 = lista2.getHead();
 
-	return lista;
+	while (no1 != nullptr) {
+		resultado.Inserir(no1->getBase(), no1->getPotencia());
+		no1 = no1->getProximo();
+	}
+
+	while (no2 != nullptr) {
+		resultado.Inserir(no2->getBase(), no2->getPotencia());
+		no2 = no2->getProximo();
+	}
+	
+	resultado.simplificar();
+	return resultado;
 }
 
-ListaPolinomio& operator-(const ListaPolinomio& lista1, const ListaPolinomio& lista2) {
-	ListaPolinomio lista;
-	return lista;
+ListaPolinomio operator-(const ListaPolinomio& lista1, const ListaPolinomio& lista2) {
+	ListaPolinomio resultado;
+	NoPolinomio* no1 = lista1.getHead();
+	NoPolinomio* no2 = lista2.getHead();
+
+	while (no1 != nullptr) {
+		resultado.Inserir(no1->getBase(), no1->getPotencia());
+		no1 = no1->getProximo();
+	}
+
+	while (no2 != nullptr) {
+		resultado.Inserir(no2->getBase()*(-1), no2->getPotencia());
+		no2 = no2->getProximo();
+	}
+
+	resultado.simplificar();
+	return resultado;
 }
