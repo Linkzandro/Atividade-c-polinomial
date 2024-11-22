@@ -52,6 +52,11 @@ NoPolinomio operator+(const NoPolinomio& no1, const NoPolinomio& no2) {
 
 
 ostream& operator<<(ostream& os, NoPolinomio& monomio) {
+	if (monomio.getPotencia() == 0) {
+		os << monomio.getBase();
+		return os;
+	}
+
 	os << monomio.getBase() << "x^" << monomio.getPotencia();
 	return os;
 }
