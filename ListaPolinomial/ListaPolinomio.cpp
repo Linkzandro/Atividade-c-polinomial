@@ -4,8 +4,13 @@ NoPolinomio* ListaPolinomio::getHead() const {
 	return head;
 }
 
+int ListaPolinomio::getSize() const {
+	return tamanho;
+}
+
 void ListaPolinomio::display() {
 	simplificar();
+	sortList();
 	NoPolinomio* atual = head;
 	while (atual != nullptr) {
 		cout << *atual;
@@ -76,7 +81,6 @@ ListaPolinomio::ListaPolinomio() {
 	grau = 0;
 	tamanho = 0;
 }
-
 ListaPolinomio::~ListaPolinomio() {
 	while (head != nullptr) {
 		NoPolinomio* temp = head;
@@ -272,3 +276,4 @@ ListaPolinomio operator-(const ListaPolinomio& lista1, const ListaPolinomio& lis
 	resultado.simplificar();
 	return resultado;
 }
+
