@@ -65,7 +65,7 @@ public:
 		}
 
 		while (leitor2 >> base >> expoente ) {
-			if (base != 0 || expoente != 0) {
+			if (base != 0) {
 				lista->Inserir(base, expoente);
 			}
 		}
